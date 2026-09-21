@@ -143,6 +143,7 @@ nav a:hover,
     padding: 3px;
     border: 1px solid #C1B6AD;
     border-radius: 100px;
+    cursor: pointer;
 }
 
 .theme-switch__sun,
@@ -162,6 +163,71 @@ nav a:hover,
 
 .theme-switch__moon {
     color: #403F3D;
+}
+
+#theme-toggle:focus-visible ~ header .theme-switch {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+body:has(#theme-toggle:checked) {
+    background-color: #292826;
+    color: #E1D4C9;
+}
+
+body:has(#theme-toggle:checked) .logo,
+body:has(#theme-toggle:checked) .burger-btn {
+    color: #E1D4C9;
+}
+
+body:has(#theme-toggle:checked) .logo-icon img {
+    filter: brightness(0) saturate(100%) invert(88%) sepia(10%) saturate(328%) hue-rotate(345deg) brightness(104%);
+}
+
+body:has(#theme-toggle:checked) .theme-switch,
+body:has(#theme-toggle:checked) .burger-btn {
+    border-color: #665F55;
+}
+
+body:has(#theme-toggle:checked) .theme-switch__sun {
+    background-color: transparent;
+    color: #E1D4C9;
+}
+
+body:has(#theme-toggle:checked) .theme-switch__moon {
+    border-radius: 50%;
+    background-color: #B0907A;
+    color: #E1D4C9;
+}
+
+body:has(#theme-toggle:checked) .burger {
+    background-color: #292826;
+}
+
+body:has(#theme-toggle:checked) .button-primary {
+    background-color: #292826;
+    color: #E1D4C9;
+}
+
+body:has(#theme-toggle:checked) .button-primary:hover,
+body:has(#theme-toggle:checked) .store:hover,
+body:has(#theme-toggle:checked) .slider-btn:hover {
+    background-color: #403F3D;
+    color: #E1D4C9;
+}
+
+body:has(#theme-toggle:checked) .slider-btn,
+body:has(#theme-toggle:checked) .store {
+    border-color: #C1B6AD;
+    color: #E1D4C9;
+}
+
+body:has(#theme-toggle:checked) .dots__item {
+    background-color: #665F55;
+}
+
+body:has(#theme-toggle:checked) .dots__item--active {
+    background-color: #C1B6AD;
 }
 
 .menu-link {
