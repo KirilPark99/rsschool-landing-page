@@ -169,3 +169,37 @@
         display: none;
     }
 }
+
+@media (max-width: 767px) {
+    .menu {
+        padding-top: 8px;
+    }
+
+    .menu-intro h1 {
+        font-size: 32px;
+        line-height: 1.25;
+        margin-bottom: 24px;
+    }
+
+    .tabs {
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    .tab {
+        height: 40px;
+        padding: 0 12px 0 10px;
+        font-size: 16px;
+    }
+
+    .grid-coffee,
+    .grid-tea,
+    .grid-dessert {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .item img {
+        height: 280px;
+    }
+}

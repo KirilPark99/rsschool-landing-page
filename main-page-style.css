@@ -668,3 +668,113 @@ footer {
         gap: 56px;
     }
 }
+
+@media (max-width: 767px) {
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .header-actions {
+        gap: 12px;
+    }
+
+    .burger-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .burger-nav {
+        gap: 32px;
+    }
+
+    .hero .offer {
+        min-height: 520px;
+        padding: 40px 16px;
+        border-radius: 24px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+        line-height: 1.15;
+    }
+
+    .hero p {
+        margin-bottom: 28px;
+    }
+
+    .button-primary {
+        min-width: 180px;
+        height: 52px;
+    }
+
+    .favorite-coffee,
+    .about {
+        padding-top: 72px;
+    }
+
+    .favorite-coffee h2,
+    .about h2,
+    .mobile-app h2,
+    .footer-card h2 {
+        font-size: 32px;
+        line-height: 1.25;
+    }
+
+    .favorite-coffee h2 {
+        margin-bottom: 32px;
+    }
+
+    .slider-btn {
+        display: none;
+    }
+
+    .slider {
+        min-height: 0;
+        margin-bottom: 28px;
+    }
+
+    .slider img {
+        width: 260px;
+    }
+
+    .favorite-coffee p {
+        max-width: 340px;
+    }
+
+    .column-1 img:first-child,
+    .column-2 img:last-child {
+        height: 480px;
+    }
+
+    .images {
+        gap: 24px;
+    }
+
+    .mobile-app {
+        padding-top: 72px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .phones {
+        margin-top: 32px;
+    }
+
+    footer {
+        padding: 72px 0 24px;
+    }
+
+    .footer-card {
+        padding: 40px 24px 48px;
+        gap: 40px;
+        border-radius: 24px;
+    }
+
+    .footer-card h2 {
+        margin-bottom: 24px;
+    }
+}
