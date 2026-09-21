@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="resources/Resource.png" type="image/png">
+    <link rel="stylesheet" href="main-page-style.css">
+    <script src="script.js" defer></script>
+    <title>Coffee House</title>
+</head>
+<body>
+    <input class="visually-hidden" type="checkbox" id="theme-toggle" aria-label="Use dark theme">
+    <header>
+        <input class="visually-hidden" type="checkbox" id="burger-toggle">
+        <div class="container">
+            <div class="header-menu">
+                <a class="logo" href="main-page.html">
+                    <span class="logo-icon">
+                        <img src="resources/Resource.png" alt="">
+                    </span>
+                    <span class="logo-caption">Coffee House</span>
+                </a>
+                <nav aria-label="Main navigation">
+                    <ul>
+                        <li><a href="#favorite">Favorite coffee</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#app">Mobile app</a></li>
+                        <li><a href="#contacts">Contact us</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <label class="theme-switch" for="theme-toggle" title="Switch color theme">
+                        <span class="theme-switch__sun">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.4"/>
+                                <path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M12.8 3.2l-1.1 1.1M4.3 11.7l-1.1 1.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                            </svg>
+                        </span>
+                        <span class="theme-switch__moon">
+                            <svg width="16" height="16" viewBox="0 0 18 18" fill="currentColor">
+                                <path d="M9 0C4.03 0 0 4.03 0 9C0 13.97 4.03 18 9 18C13.97 18 18 13.97 18 9C18 8.54 17.96 8.08 17.9 7.64C16.92 9.01 15.32 9.9 13.5 9.9C10.52 9.9 8.1 7.48 8.1 4.5C8.1 2.69 8.99 1.08 10.36 0.1C9.92 0.04 9.46 0 9 0Z"/>
+                            </svg>
+                        </span>
+                    </label>
+                    <nav class="catalog-nav" aria-label="Catalog navigation">
+                        <ul>
+                            <li>
+                                <a class="menu-link" href="catalog-page.html">
+                                    Menu
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                                        <path d="M8.1 8.6c.4-1.4.2-2.4-.3-3M11.4 8.3c.4-1.5.1-2.5-.5-3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                        <path d="M5.8 9.4h7.6c.3 2.8-1.3 4.8-3.8 4.8s-4.1-2-3.8-4.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                                        <path d="M13.4 10.6h1.3a1.6 1.6 0 0 1 0 3.2h-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                        <path d="M4.8 16.8h10.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <label class="burger-btn" for="burger-toggle">
+                        <svg class="burger-btn__open" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                            <path d="M3 6.5h12M3 11.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="burger-btn__close" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                            <path d="M4.5 4.5 13.5 13.5M13.5 4.5 4.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="visually-hidden">Open menu</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="burger">
+            <nav class="burger-nav" aria-label="Mobile navigation">
+                <ul>
+                    <li><a href="#favorite">Favorite coffee</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#app">Mobile app</a></li>
+                    <li><a href="#contacts">Contact us</a></li>
+                    <li>
+                        <a class="menu-link" href="catalog-page.html">
+                            Menu
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                                <path d="M8.1 8.6c.4-1.4.2-2.4-.3-3M11.4 8.3c.4-1.5.1-2.5-.5-3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                <path d="M5.8 9.4h7.6c.3 2.8-1.3 4.8-3.8 4.8s-4.1-2-3.8-4.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                                <path d="M13.4 10.6h1.3a1.6 1.6 0 0 1 0 3.2h-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                <path d="M4.8 16.8h10.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="offer">
+                    <h1><span class="accent">Enjoy</span> premium coffee at our charming cafe</h1>
+                    <p>With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.</p>
+                    <a class="button-primary" href="catalog-page.html">
+                        Menu
+                        <svg class="button-primary__icon" width="20" height="20" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                            <path d="M8.1 8.6c.4-1.4.2-2.4-.3-3M11.4 8.3c.4-1.5.1-2.5-.5-3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                            <path d="M5.8 9.4h7.6c.3 2.8-1.3 4.8-3.8 4.8s-4.1-2-3.8-4.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                            <path d="M13.4 10.6h1.3a1.6 1.6 0 0 1 0 3.2h-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                            <path d="M4.8 16.8h10.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="favorite-coffee" id="favorite">
+            <div class="container">
+                <h2>Choose your <span class="accent">favorite</span> coffee</h2>
+                <div class="slider">
+                    <button class="slider-btn slider-btn--prev" type="button" aria-label="Previous coffee">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                            <path d="M11.2 3.8 6 9l5.2 5.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="slider-track">
+                        <article class="slider-item slider-item--active">
+                            <img src="resources/coffee-slider-1.png" alt="S'mores Frappuccino">
+                            <h3>S'mores Frappuccino</h3>
+                            <p>This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
+                            <p class="price">$5.50</p>
+                        </article>
+                        <article class="slider-item">
+                            <img src="resources/coffee-slider-2.png" alt="Caramel macchiato">
+                            <h3>Caramel macchiato</h3>
+                            <p>Fragrant and unique classic espresso with fresh milk and caramel-biscuit syrup.</p>
+                            <p class="price">$5.00</p>
+                        </article>
+                        <article class="slider-item">
+                            <img src="resources/coffee-slider-3.png" alt="Ice coffee">
+                            <h3>Ice coffee</h3>
+                            <p>A popular summer drink that tones and invigorates. Prepared from coffee, milk and ice.</p>
+                            <p class="price">$4.50</p>
+                        </article>
+                    </div>
+                    <button class="slider-btn slider-btn--next" type="button" aria-label="Next coffee">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                            <path d="M6.8 3.8 12 9l-5.2 5.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="dots" aria-hidden="true">
+                    <span class="dots__item dots__item--active"></span>
+                    <span class="dots__item"></span>
+                    <span class="dots__item"></span>
+                </div>
+            </div>
+        </section>
+        <section class="about" id="about">
+            <div class="container">
+                <h2>Resource is <span class="accent">the perfect and cozy place</span> where<span class="line-break"> </span>you can enjoy a variety of hot beverages, relax,<span class="line-break"> </span>catch up with friends, or get some work done.</h2>
+                <div class="images">
+                    <div class="column-1">
+                        <img src="resources/about-1.jpg" alt="Woman stirring coffee at a cafe table">
+                        <img src="resources/about-2.jpg" alt="Cup of coffee with warm lights">
+                    </div>
+                    <div class="column-2">
+                        <img src="resources/about-3.jpg" alt="Man working on a laptop with coffee">
+                        <img src="resources/about-4.jpg" alt="Couple sharing coffee">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mobile-app" id="app">
+            <div class="container">
+                <div class="offer">
+                    <h2><span class="accent">Download</span> our app<br>to start ordering</h2>
+                    <p>Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are</p>
+                    <div class="buttons">
+                        <a class="store" href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer">
+                            <svg width="22" height="26" viewBox="0 0 22 26" aria-hidden="true">
+                                <path fill="currentColor" d="M17.6 13.7c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.8-2-1.6-.2-3.1.9-3.9.9s-2.1-.9-3.4-.9c-1.8 0-3.4 1-4.3 2.6-1.8 3.2-.5 7.9 1.3 10.5.9 1.3 1.9 2.7 3.3 2.6 1.3-.1 1.8-.8 3.4-.8s2 .8 3.4.8 2.3-1.3 3.1-2.5c1-.1 1.9-1.2 2.6-2.4-6.8-2.6-5.7-9.6-1.9-11.9zM14.8 5.6c.7-.9 1.2-2.1 1.1-3.3-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.2.1 2.3-.6 3-1.5z"/>
+                            </svg>
+                            <span>
+                                <span class="store__small">Available on the</span>
+                                <span class="store__name">App Store</span>
+                            </span>
+                        </a>
+                        <a class="store" href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+                            <svg width="22" height="24" viewBox="0 0 22 24" aria-hidden="true">
+                                <path fill="currentColor" d="M1.2 1.4c-.3.3-.5.8-.5 1.4v18.4c0 .6.2 1.1.5 1.4l.1.1 10.3-10.3v-.2L1.3 1.3l-.1.1z"/>
+                                <path fill="currentColor" d="M14.8 15.7 11.1 12v-.2l3.7-3.7.1.1 4.4 2.5c1.3.7 1.3 1.9 0 2.6l-4.4 2.5-.1-.1z"/>
+                                <path fill="currentColor" d="M14.9 15.6 11.1 11.9 1.2 21.7c.4.4 1.1.5 1.9.1l11.8-6.2z"/>
+                                <path fill="currentColor" d="M14.9 8.4 3.1 2.2C2.3 1.8 1.6 1.8 1.2 2.3L11.1 12l3.8-3.6z"/>
+                            </svg>
+                            <span>
+                                <span class="store__small">Available on</span>
+                                <span class="store__name">Google Play</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <img class="phones" src="resources/mobile-screens.png" alt="Resource app on two phones">
+            </div>
+        </section>
+    </main>
+    <footer id="contacts">
+        <div class="container">
+            <div class="footer-card">
+                <div class="offer">
+                    <h2>Sip, Savor, Smile.<br><span class="accent">It's coffee time!</span></h2>
+                    <div class="socials">
+                        <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
+                                <path d="M16.2 4.4c-.5.2-1 .4-1.6.4.6-.3 1-.9 1.2-1.6-.5.3-1.1.6-1.8.7A2.7 2.7 0 0 0 9.4 6.6c0 .2 0 .4.1.6-2.3-.1-4.3-1.2-5.6-2.9-.2.4-.4.9-.4 1.4 0 .9.5 1.8 1.2 2.3-.4 0-.9-.1-1.2-.4v.1c0 1.3.9 2.4 2.2 2.7-.2.1-.5.1-.7.1-.2 0-.3 0-.5-.1.3 1 1.3 1.8 2.4 1.8A5.5 5.5 0 0 1 2 13.6 7.7 7.7 0 0 0 6.2 14.8c4.9 0 7.6-4.1 7.6-7.6v-.3c.5-.4 1-.9 1.4-1.5z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                                <rect x="2.2" y="2.2" width="13.6" height="13.6" rx="4" stroke="currentColor" stroke-width="1.4"/>
+                                <circle cx="9" cy="9" r="3.1" stroke="currentColor" stroke-width="1.4"/>
+                                <circle cx="13.1" cy="4.9" r="0.8" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
+                                <path d="M10.4 15.5V9.7h1.9l.3-2.2h-2.2V6.1c0-.6.2-1.1 1.1-1.1H12.7V3.1c-.2 0-.9-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.5H6.1v2.2h1.8v5.8h2.5z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="contacts-info">
+                    <h3>Contact us</h3>
+                    <div class="contacts">
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=8558+Green+Rd%2C+Los+Angeles%2C+CA" target="_blank" rel="noopener noreferrer">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M8 8.6a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" stroke="currentColor" stroke-width="1.3"/>
+                                <path d="M8 14s4.5-3.7 4.5-7.1A4.5 4.5 0 0 0 8 2.4a4.5 4.5 0 0 0-4.5 4.5C3.5 10.3 8 14 8 14Z" stroke="currentColor" stroke-width="1.3"/>
+                            </svg>
+                            8558 Green Rd., LA
+                        </a>
+                        <a href="tel:+16035550123">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M6.2 3.2 5 4.6c-.3.4-.3.9 0 1.4l.8.9a8 8 0 0 0 3.3 3.3l.9.8c.5.3 1 .3 1.4 0l1.4-1.2c.3-.2.3-.6 0-.9l-1.3-1.1a.7.7 0 0 0-.8 0l-.6.4a6.4 6.4 0 0 1-2.3-2.3l.4-.6a.7.7 0 0 0 0-.8L7.1 3.2a.7.7 0 0 0-.9 0Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                            </svg>
+                            +1 (603) 555-0123
+                        </a>
+                        <p>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <circle cx="8" cy="8" r="5.2" stroke="currentColor" stroke-width="1.3"/>
+                                <path d="M8 5.2V8l1.8 1.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                            </svg>
+                            Mon–Sat: 9:00–23:00
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
