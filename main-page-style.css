@@ -198,10 +198,61 @@ nav a:hover,
     line-height: 1.5;
 }
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.burger-btn,
+.burger,
+.button-primary__icon {
+    display: none;
+}
+
+.burger-btn {
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #C1B6AD;
+    border-radius: 50%;
+    color: #403F3D;
+    cursor: pointer;
+}
+
+.burger {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    align-items: center;
+    justify-content: center;
+    background-color: #E1D4C9;
+}
+
+.burger-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.burger-nav a {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
 .button-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     min-width: 200px;
     height: 60px;
     padding: 0 32px;
@@ -313,6 +364,10 @@ nav a:hover,
 
 .about {
     padding-top: 114px;
+}
+
+.line-break {
+    display: block;
 }
 
 .about h2 {
@@ -489,4 +544,127 @@ footer {
 .contacts a:hover {
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+@media (max-width: 1359px) {
+    .container {
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .header-menu {
+        position: relative;
+        z-index: 30;
+    }
+
+    header {
+        position: relative;
+        z-index: 40;
+    }
+
+    .header-menu > nav,
+    .header-menu .menu-link {
+        display: none;
+    }
+
+    .burger-btn {
+        display: flex;
+    }
+
+    .burger-btn__close {
+        display: none;
+    }
+
+    #burger-toggle:checked ~ .container .burger-btn__open {
+        display: none;
+    }
+
+    #burger-toggle:checked ~ .container .burger-btn__close {
+        display: block;
+    }
+
+    #burger-toggle:checked ~ .burger {
+        display: flex;
+    }
+
+    .hero .offer {
+        height: auto;
+        min-height: 644px;
+        padding: 72px 40px;
+    }
+
+    .hero h1,
+    .hero p {
+        max-width: none;
+    }
+
+    .button-primary__icon {
+        display: block;
+    }
+
+    .favorite-coffee h2 {
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .slider {
+        height: auto;
+        min-height: 420px;
+    }
+
+    .slider img {
+        width: min(420px, 70%);
+        height: auto;
+    }
+
+    .line-break {
+        display: inline;
+    }
+
+    .images {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .column-1,
+    .column-2 {
+        display: contents;
+    }
+
+    .column-1 img:last-child,
+    .column-2 img:first-child {
+        display: none;
+    }
+
+    .column-1 img:first-child,
+    .column-2 img:last-child {
+        height: 560px;
+    }
+
+    .mobile-app .container {
+        grid-template-columns: 1fr;
+        justify-items: start;
+    }
+
+    .mobile-app p {
+        max-width: none;
+    }
+
+    .phones {
+        justify-self: center;
+        width: min(640px, 100%);
+        height: auto;
+        margin-top: 24px;
+    }
+
+    .footer-card {
+        grid-template-columns: 1fr;
+        align-items: start;
+        min-height: 0;
+        padding: 64px 40px 72px;
+        gap: 56px;
+    }
 }
