@@ -1,0 +1,113 @@
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.menu-link.is-current {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.menu {
+    padding-top: 20px;
+}
+
+.menu-intro {
+    text-align: center;
+}
+
+.menu-intro h1 {
+    margin: 0 0 36px;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 18px 0 14px;
+    border: 1px solid #C1B6AD;
+    border-radius: 100px;
+    background: transparent;
+    color: #403F3D;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.tab:hover,
+#tab-coffee:checked ~ main .tab-coffee,
+#tab-tea:checked ~ main .tab-tea,
+#tab-dessert:checked ~ main .tab-dessert {
+    border-color: #665F55;
+    background-color: #665F55;
+    color: #E1D4C9;
+}
+
+.grid-coffee,
+.grid-tea,
+.grid-dessert {
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+#tab-coffee:checked ~ main .grid-coffee,
+#tab-tea:checked ~ main .grid-tea,
+#tab-dessert:checked ~ main .grid-dessert {
+    display: grid;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 20px;
+    border: 1px solid #C1B6AD;
+    border-radius: 24px;
+}
+
+.item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.item h3 {
+    margin: 16px 0 8px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.item p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.item .price {
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+}
