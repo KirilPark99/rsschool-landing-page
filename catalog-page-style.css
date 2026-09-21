@@ -81,6 +81,13 @@
     padding: 16px 16px 20px;
     border: 1px solid #C1B6AD;
     border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.item:hover {
+    border-color: #665F55;
+    background-color: rgb(102 95 85 / 8%);
 }
 
 .item img {
@@ -146,6 +153,10 @@ body:has(#theme-toggle:checked) #tab-dessert:checked ~ main .tab-dessert {
 
 body:has(#theme-toggle:checked) .item {
     border-color: #665F55;
+}
+
+body:has(#theme-toggle:checked) .item:hover {
+    background-color: #403F3D;
 }
 
 body:has(#theme-toggle:checked) .load-more {

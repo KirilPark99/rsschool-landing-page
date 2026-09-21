@@ -26,6 +26,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     background-color: #E1D4C9;
@@ -41,6 +45,12 @@ img {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+a,
+button,
+label {
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s, opacity 0.3s;
 }
 
 button {
@@ -78,6 +88,10 @@ button {
     color: #403F3D;
 }
 
+.logo:hover {
+    opacity: 0.75;
+}
+
 .logo-icon {
     position: relative;
     width: 100%;
@@ -111,9 +125,12 @@ button {
     text-transform: uppercase;
 }
 
-nav {
+nav ul {
     display: flex;
     gap: 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 nav a,
@@ -125,6 +142,7 @@ nav a,
 
 nav a:hover,
 .menu-link:hover {
+    opacity: 0.7;
     text-decoration: underline;
     text-underline-offset: 4px;
 }
@@ -163,6 +181,10 @@ nav a:hover,
 
 .theme-switch__moon {
     color: #403F3D;
+}
+
+.theme-switch:hover {
+    border-color: #665F55;
 }
 
 #theme-toggle:focus-visible ~ header .theme-switch {
@@ -292,6 +314,15 @@ body:has(#theme-toggle:checked) .dots__item--active {
     cursor: pointer;
 }
 
+.burger-btn:hover {
+    background-color: #665F55;
+    color: #E1D4C9;
+}
+
+body:has(#theme-toggle:checked) .burger-btn:hover {
+    background-color: #403F3D;
+}
+
 .burger {
     position: fixed;
     inset: 0;
@@ -301,7 +332,7 @@ body:has(#theme-toggle:checked) .dots__item--active {
     background-color: #E1D4C9;
 }
 
-.burger-nav {
+.burger-nav ul {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -348,20 +379,22 @@ body:has(#theme-toggle:checked) .dots__item--active {
 
 .slider {
     position: relative;
-    height: 476px;
-    margin-bottom: 48px;
+}
+
+.slider-item:not(.slider-item--active) {
+    display: none;
 }
 
 .slider img {
     width: 476px;
     height: 476px;
-    margin: 0 auto;
+    margin: 0 auto 48px;
     object-fit: contain;
 }
 
 .slider-btn {
     position: absolute;
-    top: 50%;
+    top: 238px;
     width: 60px;
     height: 60px;
     display: flex;
@@ -608,6 +641,7 @@ footer {
 }
 
 .contacts a:hover {
+    opacity: 0.7;
     text-decoration: underline;
     text-underline-offset: 3px;
 }
@@ -617,41 +651,6 @@ footer {
         width: 100%;
         padding-left: 40px;
         padding-right: 40px;
-    }
-
-    .header-menu {
-        position: relative;
-        z-index: 30;
-    }
-
-    header {
-        position: relative;
-        z-index: 40;
-    }
-
-    .header-menu > nav,
-    .header-menu .menu-link {
-        display: none;
-    }
-
-    .burger-btn {
-        display: flex;
-    }
-
-    .burger-btn__close {
-        display: none;
-    }
-
-    #burger-toggle:checked ~ .container .burger-btn__open {
-        display: none;
-    }
-
-    #burger-toggle:checked ~ .container .burger-btn__close {
-        display: block;
-    }
-
-    #burger-toggle:checked ~ .burger {
-        display: flex;
     }
 
     .hero .offer {
@@ -676,13 +675,16 @@ footer {
     }
 
     .slider {
-        height: auto;
-        min-height: 420px;
+        min-height: 0;
     }
 
     .slider img {
         width: min(420px, 70%);
         height: auto;
+    }
+
+    .slider-btn {
+        top: 210px;
     }
 
     .line-break {
@@ -735,6 +737,66 @@ footer {
     }
 }
 
+@media (min-width: 769px) and (max-width: 1100px) {
+    .header-menu nav ul {
+        gap: 16px;
+    }
+
+    .header-menu nav a,
+    .header-menu .menu-link {
+        font-size: 14px;
+    }
+
+    .header-actions {
+        gap: 12px;
+    }
+
+    .logo {
+        width: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-menu {
+        position: relative;
+        z-index: 30;
+    }
+
+    header {
+        position: relative;
+        z-index: 40;
+    }
+
+    .header-menu > nav,
+    .header-menu .catalog-nav {
+        display: none;
+    }
+
+    .burger-btn {
+        display: flex;
+    }
+
+    .burger-btn__close {
+        display: none;
+    }
+
+    #burger-toggle:checked ~ .container .burger-btn__open {
+        display: none;
+    }
+
+    #burger-toggle:checked ~ .container .burger-btn__close {
+        display: block;
+    }
+
+    #burger-toggle:checked ~ .burger {
+        display: flex;
+    }
+
+    body:has(#burger-toggle:checked) {
+        overflow: hidden;
+    }
+}
+
 @media (max-width: 767px) {
     .container {
         padding-left: 16px;
@@ -750,7 +812,7 @@ footer {
         height: 44px;
     }
 
-    .burger-nav {
+    .burger-nav ul {
         gap: 32px;
     }
 
@@ -797,11 +859,11 @@ footer {
 
     .slider {
         min-height: 0;
-        margin-bottom: 28px;
     }
 
     .slider img {
         width: 260px;
+        margin-bottom: 28px;
     }
 
     .favorite-coffee p {
@@ -842,5 +904,17 @@ footer {
 
     .footer-card h2 {
         margin-bottom: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
     }
 }
