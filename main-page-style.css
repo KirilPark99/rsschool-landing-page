@@ -28,6 +28,11 @@
 
 html {
     scroll-behavior: smooth;
+    color-scheme: light;
+}
+
+html:has(#theme-toggle:checked) {
+    color-scheme: dark;
 }
 
 body {
@@ -35,6 +40,10 @@ body {
     background-color: #E1D4C9;
     color: #403F3D;
     font-family: Inter, sans-serif;
+}
+
+body.modal-open {
+    overflow: hidden;
 }
 
 img {
@@ -47,10 +56,31 @@ a {
     text-decoration: none;
 }
 
+.skip-link {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+    padding: 12px 16px;
+    border-radius: 100px;
+    background-color: #665F55;
+    color: #E1D4C9;
+    transform: translateY(-160%);
+}
+
+.skip-link:focus-visible {
+    transform: none;
+}
+
+:where(a, button, [role="button"]):focus-visible {
+    outline: 2px solid #B0907A;
+    outline-offset: 3px;
+}
+
 a,
 button,
 label {
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s, opacity 0.3s;
+    transition: opacity 0.3s;
 }
 
 button {
@@ -187,7 +217,7 @@ nav a:hover,
     border-color: #665F55;
 }
 
-#theme-toggle:focus-visible ~ header .theme-switch {
+.theme-switch:has(#theme-toggle:focus-visible) {
     outline: 2px solid currentColor;
     outline-offset: 2px;
 }
@@ -304,6 +334,7 @@ body:has(#theme-toggle:checked) .dots__item--active {
 }
 
 .burger-btn {
+    position: relative;
     width: 48px;
     height: 48px;
     align-items: center;
@@ -314,21 +345,42 @@ body:has(#theme-toggle:checked) .dots__item--active {
     cursor: pointer;
 }
 
-.burger-btn:hover {
+.burger-btn svg {
+    position: absolute;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.burger-btn__close {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+.burger-btn[aria-expanded="true"] .burger-btn__open {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+.burger-btn[aria-expanded="true"] .burger-btn__close {
+    opacity: 1;
+    transform: rotate(0);
+}
+
+.burger-btn:not([aria-expanded="true"]):hover {
     background-color: #665F55;
     color: #E1D4C9;
 }
 
-body:has(#theme-toggle:checked) .burger-btn:hover {
+body:has(#theme-toggle:checked) .burger-btn:not([aria-expanded="true"]):hover {
     background-color: #403F3D;
 }
 
 .burger {
     position: fixed;
-    inset: 0;
+    inset: 100px 0 0;
     z-index: 20;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
     background-color: #E1D4C9;
 }
 
@@ -381,8 +433,22 @@ body:has(#theme-toggle:checked) .burger-btn:hover {
     position: relative;
 }
 
-.slider-item:not(.slider-item--active) {
+.slider-viewport {
+    overflow: hidden;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 400ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slider-track:not(.is-ready) .slider-item:not(:first-child) {
     display: none;
+}
+
+.slider-item {
+    flex: 0 0 100%;
+    min-width: 0;
 }
 
 .slider img {
@@ -395,6 +461,7 @@ body:has(#theme-toggle:checked) .burger-btn:hover {
 .slider-btn {
     position: absolute;
     top: 238px;
+    z-index: 1;
     width: 60px;
     height: 60px;
     display: flex;
@@ -404,6 +471,7 @@ body:has(#theme-toggle:checked) .burger-btn:hover {
     border-radius: 50%;
     color: #665F55;
     transform: translateY(-50%);
+    scroll-margin-top: 120px;
 }
 
 .slider-btn--prev {
@@ -451,9 +519,17 @@ body:has(#theme-toggle:checked) .burger-btn:hover {
 
 .dots__item {
     width: 40px;
-    height: 4px;
+    height: 24px;
+    padding: 10px 0;
     border-radius: 4px;
     background-color: #C1B6AD;
+    background-clip: content-box;
+    touch-action: manipulation;
+}
+
+.dots__item:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
 }
 
 .dots__item--active {
@@ -757,14 +833,15 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .header-menu {
-        position: relative;
-        z-index: 30;
+    html {
+        scroll-padding-top: 100px;
     }
 
     header {
-        position: relative;
+        position: sticky;
+        top: 0;
         z-index: 40;
+        background-color: inherit;
     }
 
     .header-menu > nav,
@@ -776,23 +853,24 @@ footer {
         display: flex;
     }
 
-    .burger-btn__close {
-        display: none;
-    }
-
-    #burger-toggle:checked ~ .container .burger-btn__open {
-        display: none;
-    }
-
-    #burger-toggle:checked ~ .container .burger-btn__close {
-        display: block;
-    }
-
-    #burger-toggle:checked ~ .burger {
+    .burger {
         display: flex;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-12px);
+        pointer-events: none;
+        transition: opacity 0.3s, transform 0.3s, visibility 0s linear 0.3s;
     }
 
-    body:has(#burger-toggle:checked) {
+    .burger.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        transition: opacity 0.3s, transform 0.3s;
+    }
+
+    body.menu-open {
         overflow: hidden;
     }
 }
@@ -916,5 +994,9 @@ footer {
     *::before,
     *::after {
         transition-duration: 0.01ms !important;
+    }
+
+    .slider-track {
+        transition: none !important;
     }
 }
