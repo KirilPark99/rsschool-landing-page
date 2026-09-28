@@ -196,6 +196,8 @@ if (document.querySelector(".grid")) {
         const image = document.createElement("img");
         image.src = product.image;
         image.alt = product.name;
+        image.width = 340;
+        image.height = 340;
 
         const details = document.createElement("div");
         details.className = "product-dialog__details";
@@ -263,6 +265,9 @@ if (document.querySelector(".grid")) {
         const image = document.createElement("img");
         image.src = product.image;
         image.alt = product.name;
+        image.width = 340;
+        image.height = 340;
+        image.loading = "lazy";
 
         const title = document.createElement("h3");
         title.textContent = product.name;

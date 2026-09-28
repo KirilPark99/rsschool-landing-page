@@ -144,6 +144,7 @@
     width: min(800px, calc(100vw - 32px));
     max-height: calc(100dvh - 32px);
     overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 16px;
     border: 0;
     border-radius: 40px;

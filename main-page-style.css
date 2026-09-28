@@ -28,6 +28,11 @@
 
 html {
     scroll-behavior: smooth;
+    color-scheme: light;
+}
+
+html:has(#theme-toggle:checked) {
+    color-scheme: dark;
 }
 
 body {
@@ -51,10 +56,31 @@ a {
     text-decoration: none;
 }
 
+.skip-link {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+    padding: 12px 16px;
+    border-radius: 100px;
+    background-color: #665F55;
+    color: #E1D4C9;
+    transform: translateY(-160%);
+}
+
+.skip-link:focus-visible {
+    transform: none;
+}
+
+:where(a, button, [role="button"]):focus-visible {
+    outline: 2px solid #B0907A;
+    outline-offset: 3px;
+}
+
 a,
 button,
 label {
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s, opacity 0.3s;
+    transition: opacity 0.3s;
 }
 
 button {
@@ -191,7 +217,7 @@ nav a:hover,
     border-color: #665F55;
 }
 
-#theme-toggle:focus-visible ~ header .theme-switch {
+.theme-switch:has(#theme-toggle:focus-visible) {
     outline: 2px solid currentColor;
     outline-offset: 2px;
 }
@@ -807,6 +833,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+    html {
+        scroll-padding-top: 100px;
+    }
+
     header {
         position: sticky;
         top: 0;
