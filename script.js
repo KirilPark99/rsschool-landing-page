@@ -35,11 +35,130 @@ document.addEventListener("keydown", (event) => {
 
 mobileScreen.addEventListener("change", () => setMenuOpen(false));
 
+const sliderTrack = document.querySelector(".slider-track");
+
+if (sliderTrack) {
+    const slides = [...sliderTrack.children];
+    const dots = [...document.querySelectorAll(".dots__item")];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let current = 0;
+    let position = 1;
+    let moving = false;
+    let pending = 0;
+
+    const lastClone = slides.at(-1).cloneNode(true);
+    const firstClone = slides[0].cloneNode(true);
+    for (const clone of [lastClone, firstClone]) {
+        clone.classList.remove("slider-item--active");
+        clone.setAttribute("aria-hidden", "true");
+        clone.inert = true;
+    }
+    sliderTrack.prepend(lastClone);
+    sliderTrack.append(firstClone);
+    sliderTrack.style.transition = "none";
+    sliderTrack.style.transform = "translateX(-100%)";
+    sliderTrack.classList.add("is-ready");
+    void sliderTrack.offsetWidth;
+    sliderTrack.style.removeProperty("transition");
+
+    function updateSlider() {
+        slides.forEach((slide, index) => {
+            const active = index === current;
+            slide.classList.toggle("slider-item--active", active);
+            slide.setAttribute("aria-hidden", String(!active));
+            slide.inert = !active;
+            dots[index].classList.toggle("dots__item--active", active);
+            if (active) dots[index].setAttribute("aria-current", "true");
+            else dots[index].removeAttribute("aria-current");
+        });
+    }
+
+    function snapToCurrent() {
+        sliderTrack.style.transition = "none";
+        position = current + 1;
+        sliderTrack.style.transform = `translateX(-${position * 100}%)`;
+        void sliderTrack.offsetWidth;
+        sliderTrack.style.removeProperty("transition");
+        finishMove();
+    }
+
+    function finishMove() {
+        moving = false;
+        if (pending) {
+            const direction = Math.sign(pending);
+            pending -= direction;
+            moveSlider(direction);
+        }
+    }
+
+    function moveSlider(direction) {
+        if (moving) {
+            pending += direction;
+            return;
+        }
+        current = (current + direction + slides.length) % slides.length;
+        updateSlider();
+        if (reducedMotion.matches) {
+            snapToCurrent();
+            return;
+        }
+        moving = true;
+        position += direction;
+        sliderTrack.style.transform = `translateX(-${position * 100}%)`;
+    }
+
+    sliderTrack.addEventListener("transitionend", (event) => {
+        if (event.target !== sliderTrack || event.propertyName !== "transform") return;
+        if (position === 0 || position === slides.length + 1) {
+            snapToCurrent();
+            return;
+        }
+        finishMove();
+    });
+    document.querySelector(".slider-btn--prev").addEventListener("click", () => moveSlider(-1));
+    document.querySelector(".slider-btn--next").addEventListener("click", () => moveSlider(1));
+    dots.forEach((dot, index) => dot.addEventListener("click", () => {
+        if (index !== current) moveSlider(index === (current + 1) % slides.length ? 1 : -1);
+    }));
+    reducedMotion.addEventListener("change", snapToCurrent);
+    updateSlider();
+}
+
 if (document.querySelector(".grid")) {
     const dialog = document.querySelector(".product-dialog");
     const dialogContent = dialog.querySelector(".product-dialog__content");
     const closeButton = dialog.querySelector(".product-dialog__close");
+    const grids = Object.fromEntries(["coffee", "tea", "dessert"].map((category) => [category, document.querySelector(`.grid-${category}`)]));
+    const categoryButtons = [...document.querySelectorAll(".tab[data-category]")];
+    const moreButton = document.querySelector(".load-more");
+    const compactCatalog = window.matchMedia("(max-width: 1359px)");
+    let activeCategory = "coffee";
+    let showAll = false;
     let selectedCard;
+
+    function updateCatalog() {
+        categoryButtons.forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.category === activeCategory));
+        });
+        for (const [category, grid] of Object.entries(grids)) {
+            grid.hidden = category !== activeCategory;
+            [...grid.children].forEach((card, index) => {
+                card.hidden = compactCatalog.matches && !showAll && index >= 4;
+            });
+        }
+        moreButton.hidden = !compactCatalog.matches || showAll || grids[activeCategory].children.length <= 4;
+    }
+
+    categoryButtons.forEach((button) => button.addEventListener("click", () => {
+        activeCategory = button.dataset.category;
+        showAll = false;
+        updateCatalog();
+    }));
+    moreButton.addEventListener("click", () => {
+        showAll = true;
+        updateCatalog();
+    });
+    compactCatalog.addEventListener("change", updateCatalog);
 
     function openProduct(product, card) {
         const image = document.createElement("img");
@@ -106,6 +225,8 @@ if (document.querySelector(".grid")) {
                 openProduct(product, card);
             }
         });
-        document.querySelector(`.grid-${product.category}`).append(card);
+        grids[product.category].append(card);
     });
+
+    updateCatalog();
 }
