@@ -6,6 +6,7 @@
     <link rel="icon" href="resources/Resource.png" type="image/png">
     <link rel="stylesheet" href="main-page-style.css">
     <link rel="stylesheet" href="catalog-page-style.css">
+    <script src="products.js" defer></script>
     <script src="script.js" defer></script>
     <title>Menu — Coffee House</title>
 </head>
@@ -16,7 +17,6 @@
     <input class="visually-hidden" type="radio" name="category" id="tab-tea">
     <input class="visually-hidden" type="radio" name="category" id="tab-dessert">
     <header>
-        <input class="visually-hidden" type="checkbox" id="burger-toggle">
         <div class="container">
             <div class="header-menu">
                 <a class="logo" href="main-page.html">
@@ -62,19 +62,18 @@
                             </li>
                         </ul>
                     </nav>
-                    <label class="burger-btn" for="burger-toggle">
+                    <button class="burger-btn" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
                         <svg class="burger-btn__open" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                             <path d="M3 6.5h12M3 11.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
                         <svg class="burger-btn__close" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                             <path d="M4.5 4.5 13.5 13.5M13.5 4.5 4.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
-                        <span class="visually-hidden">Open menu</span>
-                    </label>
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="burger">
+        <div class="burger" id="mobile-menu" inert>
             <nav class="burger-nav" aria-label="Mobile navigation">
                 <ul>
                     <li><a href="main-page.html#favorite">Favorite coffee</a></li>
@@ -130,132 +129,9 @@
                 </div>
                 <div class="grid">
                     <h2 class="visually-hidden">Menu items</h2>
-                    <div class="grid-coffee">
-                        <article class="item">
-                            <img src="resources/coffee-1.jpg" alt="Irish coffee">
-                            <h3>Irish coffee</h3>
-                            <p>Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
-                            <p class="price">$7.00</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/coffee-2.jpg" alt="Kahlua coffee">
-                            <h3>Kahlua coffee</h3>
-                            <p>Classic coffee with milk and Kahlua liqueur under a cap of frothed milk</p>
-                            <p class="price">$7.00</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/coffee-3.jpg" alt="Honey raf">
-                            <h3>Honey raf</h3>
-                            <p>Espresso with frothed milk, cream and aromatic honey</p>
-                            <p class="price">$5.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/coffee-4.jpg" alt="Ice cappuccino">
-                            <h3>Ice cappuccino</h3>
-                            <p>Cappuccino with soft thick foam in summer version with ice</p>
-                            <p class="price">$5.00</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/coffee-5.jpg" alt="Espresso">
-                            <h3>Espresso</h3>
-                            <p>Classic black coffee</p>
-                            <p class="price">$4.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/coffee-6.jpg" alt="Latte">
-                            <h3>Latte</h3>
-                            <p>Espresso coffee with the addition of steamed milk and dense milk foam</p>
-                            <p class="price">$5.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/coffee-7.jpg" alt="Latte macchiato">
-                            <h3>Latte macchiato</h3>
-                            <p>Espresso with frothed milk and chocolate</p>
-                            <p class="price">$5.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/coffee-8.jpg" alt="Coffee with cognac">
-                            <h3>Coffee with cognac</h3>
-                            <p>Fragrant black coffee with cognac and whipped cream</p>
-                            <p class="price">$6.50</p>
-                        </article>
-                    </div>
-                    <div class="grid-tea">
-                        <article class="item">
-                            <img src="resources/tea-1.png" alt="Moroccan tea">
-                            <h3>Moroccan</h3>
-                            <p>Fragrant black tea with the addition of tangerine, cinnamon, honey, lemon and mint</p>
-                            <p class="price">$4.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/tea-2.png" alt="Ginger tea">
-                            <h3>Ginger</h3>
-                            <p>Original black tea with fresh ginger, lemon and honey</p>
-                            <p class="price">$5.00</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/tea-3.png" alt="Cranberry tea">
-                            <h3>Cranberry</h3>
-                            <p>Invigorating black tea with cranberry and honey</p>
-                            <p class="price">$5.00</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/tea-4.png" alt="Sea buckthorn tea">
-                            <h3>Sea buckthorn</h3>
-                            <p>Toning sweet black tea with sea buckthorn, fresh thyme and cinnamon</p>
-                            <p class="price">$5.50</p>
-                        </article>
-                    </div>
-                    <div class="grid-dessert">
-                        <article class="item">
-                            <img src="resources/dessert-1.png" alt="Marble cheesecake">
-                            <h3>Marble cheesecake</h3>
-                            <p>Philadelphia cheese with lemon zest on a light sponge cake and red currant jam</p>
-                            <p class="price">$3.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/dessert-2.png" alt="Red velvet">
-                            <h3>Red velvet</h3>
-                            <p>Layer cake with cream cheese frosting</p>
-                            <p class="price">$4.00</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/dessert-3.png" alt="Cheesecakes">
-                            <h3>Cheesecakes</h3>
-                            <p>Soft cottage cheese pancakes with sour cream and fresh berries and sprinkled with powdered sugar</p>
-                            <p class="price">$4.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/dessert-4.png" alt="Creme brulee">
-                            <h3>Creme brulee</h3>
-                            <p>Delicate creamy dessert in a caramel basket with wild berries</p>
-                            <p class="price">$4.00</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/dessert-5.png" alt="Pancakes">
-                            <h3>Pancakes</h3>
-                            <p>Tender pancakes with strawberry jam and fresh strawberries</p>
-                            <p class="price">$4.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/dessert-6.png" alt="Honey cake">
-                            <h3>Honey cake</h3>
-                            <p>Classic honey cake with delicate custard</p>
-                            <p class="price">$4.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/dessert-7.png" alt="Chocolate cake">
-                            <h3>Chocolate cake</h3>
-                            <p>Cake with hot chocolate filling and nuts with dried apricots</p>
-                            <p class="price">$5.50</p>
-                        </article>
-                        <article class="item">
-                            <img src="resources/dessert-8.png" alt="Black forest">
-                            <h3>Black forest</h3>
-                            <p>A combination of thin sponge cake with cherry jam and light chocolate mousse</p>
-                            <p class="price">$6.50</p>
-                        </article>
-                    </div>
+                    <div class="grid-coffee"></div>
+                    <div class="grid-tea"></div>
+                    <div class="grid-dessert"></div>
                 </div>
                 <label class="load-more" for="show-more">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
@@ -267,6 +143,10 @@
             </div>
         </section>
     </main>
+    <dialog class="product-dialog" aria-labelledby="product-dialog-title">
+        <div class="product-dialog__content"></div>
+        <button class="product-dialog__close" type="button">Close</button>
+    </dialog>
     <footer id="contacts">
         <div class="container">
             <div class="footer-card">

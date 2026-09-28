@@ -37,6 +37,10 @@ body {
     font-family: Inter, sans-serif;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
 img {
     display: block;
     max-width: 100%;
@@ -304,6 +308,7 @@ body:has(#theme-toggle:checked) .dots__item--active {
 }
 
 .burger-btn {
+    position: relative;
     width: 48px;
     height: 48px;
     align-items: center;
@@ -314,21 +319,42 @@ body:has(#theme-toggle:checked) .dots__item--active {
     cursor: pointer;
 }
 
-.burger-btn:hover {
+.burger-btn svg {
+    position: absolute;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.burger-btn__close {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+.burger-btn[aria-expanded="true"] .burger-btn__open {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+.burger-btn[aria-expanded="true"] .burger-btn__close {
+    opacity: 1;
+    transform: rotate(0);
+}
+
+.burger-btn:not([aria-expanded="true"]):hover {
     background-color: #665F55;
     color: #E1D4C9;
 }
 
-body:has(#theme-toggle:checked) .burger-btn:hover {
+body:has(#theme-toggle:checked) .burger-btn:not([aria-expanded="true"]):hover {
     background-color: #403F3D;
 }
 
 .burger {
     position: fixed;
-    inset: 0;
+    inset: 100px 0 0;
     z-index: 20;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
     background-color: #E1D4C9;
 }
 
@@ -757,14 +783,11 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .header-menu {
-        position: relative;
-        z-index: 30;
-    }
-
     header {
-        position: relative;
+        position: sticky;
+        top: 0;
         z-index: 40;
+        background-color: inherit;
     }
 
     .header-menu > nav,
@@ -776,23 +799,24 @@ footer {
         display: flex;
     }
 
-    .burger-btn__close {
-        display: none;
-    }
-
-    #burger-toggle:checked ~ .container .burger-btn__open {
-        display: none;
-    }
-
-    #burger-toggle:checked ~ .container .burger-btn__close {
-        display: block;
-    }
-
-    #burger-toggle:checked ~ .burger {
+    .burger {
         display: flex;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-12px);
+        pointer-events: none;
+        transition: opacity 0.3s, transform 0.3s, visibility 0s linear 0.3s;
     }
 
-    body:has(#burger-toggle:checked) {
+    .burger.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        transition: opacity 0.3s, transform 0.3s;
+    }
+
+    body.menu-open {
         overflow: hidden;
     }
 }
