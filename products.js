@@ -20,3 +20,44 @@ const products = [
     { category: "dessert", name: "Chocolate cake", description: "Cake with hot chocolate filling and nuts with dried apricots", price: 5.5, image: "resources/dessert-7.png" },
     { category: "dessert", name: "Black forest", description: "A combination of thin sponge cake with cherry jam and light chocolate mousse", price: 6.5, image: "resources/dessert-8.png" },
 ];
+
+const productOptions = {
+    coffee: {
+        sizes: [
+            { code: "S", label: "200 ml", price: 0 },
+            { code: "M", label: "300 ml", price: 0.5 },
+            { code: "L", label: "400 ml", price: 1 },
+        ],
+        additives: [
+            { name: "Sugar", price: 0.5 },
+            { name: "Cinnamon", price: 0.5 },
+            { name: "Syrup", price: 0.5 },
+        ],
+    },
+    tea: {
+        sizes: [
+            { code: "S", label: "200 ml", price: 0 },
+            { code: "M", label: "300 ml", price: 0.5 },
+            { code: "L", label: "400 ml", price: 1 },
+        ],
+        additives: [
+            { name: "Sugar", price: 0.5 },
+            { name: "Lemon", price: 0.5 },
+            { name: "Syrup", price: 0.5 },
+        ],
+    },
+    dessert: {
+        sizes: [
+            { code: "S", label: "50 g", price: 0 },
+            { code: "M", label: "100 g", price: 0.5 },
+            { code: "L", label: "200 g", price: 1 },
+        ],
+        additives: [
+            { name: "Berries", price: 0.5 },
+            { name: "Nuts", price: 0.5 },
+            { name: "Jam", price: 0.5 },
+        ],
+    },
+};
+
+products.forEach((product) => Object.assign(product, productOptions[product.category]));

@@ -160,22 +160,79 @@ if (document.querySelector(".grid")) {
     });
     compactCatalog.addEventListener("change", updateCatalog);
 
+    function createOptionGroup(title, options, type) {
+        const group = document.createElement("fieldset");
+        group.className = "product-dialog__group";
+        const legend = document.createElement("legend");
+        legend.textContent = title;
+        const choices = document.createElement("div");
+        choices.className = "product-dialog__choices";
+
+        options.forEach((option, index) => {
+            const choice = document.createElement("label");
+            choice.className = "product-dialog__choice";
+            const input = document.createElement("input");
+            input.className = "visually-hidden";
+            input.type = type;
+            input.value = index;
+            if (type === "radio") {
+                input.name = "product-size";
+                input.checked = index === 0;
+            }
+            const badge = document.createElement("span");
+            badge.className = "product-dialog__badge";
+            badge.textContent = type === "radio" ? option.code : String(index + 1);
+            const label = document.createElement("span");
+            label.textContent = type === "radio" ? option.label : option.name;
+            choice.append(input, badge, label);
+            choices.append(choice);
+        });
+
+        group.append(legend, choices);
+        return group;
+    }
+
     function openProduct(product, card) {
         const image = document.createElement("img");
         image.src = product.image;
         image.alt = product.name;
 
         const details = document.createElement("div");
+        details.className = "product-dialog__details";
         const title = document.createElement("h2");
         title.id = "product-dialog-title";
         title.textContent = product.name;
         const description = document.createElement("p");
+        description.className = "product-dialog__description";
         description.textContent = product.description;
-        const price = document.createElement("p");
-        price.className = "price";
-        price.textContent = `$${product.price.toFixed(2)}`;
-        details.append(title, description, price);
+        const sizes = createOptionGroup("Size", product.sizes, "radio");
+        const additives = createOptionGroup("Additives", product.additives, "checkbox");
+        const total = document.createElement("div");
+        total.className = "product-dialog__total";
+        const totalLabel = document.createElement("span");
+        totalLabel.textContent = "Total:";
+        const amount = document.createElement("output");
+        amount.setAttribute("aria-live", "polite");
+        total.append(totalLabel, amount);
+        const note = document.createElement("p");
+        note.className = "product-dialog__note";
+        note.textContent = "The total price depends on the selected size and additives.";
+
+        function updateTotal() {
+            const size = product.sizes[Number(sizes.querySelector("input:checked").value)];
+            const additivePrice = [...additives.querySelectorAll("input:checked")].reduce((sum, input) => {
+                return sum + Math.round(product.additives[Number(input.value)].price * 100);
+            }, 0);
+            const cents = Math.round(product.price * 100) + Math.round(size.price * 100) + additivePrice;
+            amount.textContent = `$${(cents / 100).toFixed(2)}`;
+        }
+
+        sizes.addEventListener("change", updateTotal);
+        additives.addEventListener("change", updateTotal);
+        details.append(title, description, sizes, additives, total, note, closeButton);
         dialogContent.replaceChildren(image, details);
+        dialog.setAttribute("aria-labelledby", title.id);
+        updateTotal();
 
         selectedCard = card;
         dialog.showModal();
